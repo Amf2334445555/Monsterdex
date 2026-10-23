@@ -4,288 +4,317 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090b12">
-  <meta name="description" content="Explore o universo Pokémon e Digimon em um catálogo interativo.">
-  <title>MonsterDex | Pokémon & Digimon</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#090d18">
+  <meta name="description" content="MonsterDex: explore Pokémon, Digimon e suas próprias criaturas.">
+  <title>MonsterDex — Enciclopédia de Monstros</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
+
 <body>
   <header class="site-header">
-    <a class="logo" href="#inicio" aria-label="MonsterDex, início">
-      <span class="logo-symbol">M</span>
-      <span>MONSTER<span class="blue-text">DEX</span></span>
+    <a class="brand" href="#presentationScreen" data-screen-link="presentationScreen">
+      <span class="brand-icon">M</span>
+      <span>Monster<span class="brand-accent">Dex</span></span>
     </a>
 
     <nav class="main-nav" aria-label="Navegação principal">
-      <a href="#inicio" class="nav-link active" data-page="inicio">Início</a>
-      <a href="#catalogo" class="nav-link" data-page="catalogo">Catálogo</a>
-      <a href="#cadastro" class="nav-link" data-page="cadastro">Cadastrar</a>
+      <button class="nav-button active" data-screen="presentationScreen" data-i18n="navHome">
+        Início
+      </button>
+      <button class="nav-button" data-screen="catalogScreen" data-i18n="navCatalog">
+        Catálogo
+      </button>
+      <button class="nav-button" data-screen="addScreen" data-i18n="navAdd">
+        Criar monstro
+      </button>
     </nav>
+
+    <label class="language-picker">
+      <span class="sr-only">Idioma</span>
+      <select id="languageSelect" aria-label="Selecionar idioma">
+        <option value="pt">🇧🇷 Português</option>
+        <option value="en">🇺🇸 English</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="ja">🇯🇵 日本語</option>
+      </select>
+    </label>
   </header>
 
   <main>
-    <!-- INÍCIO -->
-    <section id="inicio" class="page active">
+    <!-- TELA DE APRESENTAÇÃO -->
+    <section id="presentationScreen" class="app-screen active">
       <div class="hero">
         <div class="hero-content">
-          <span class="eyebrow"><span class="status-dot"></span> BANCO DE DADOS DE CRIATURAS</span>
-          <h1>DOIS UNIVERSOS.<br><span class="red-text">INÚMERAS</span> POSSIBILIDADES.</h1>
-          <p>
-            Descubra Pokémon e Digimon, conheça seus atributos,
-            explore seus golpes e acompanhe suas evoluções.
+          <span class="eyebrow" data-i18n="heroEyebrow">SUA ENCICLOPÉDIA FANTÁSTICA</span>
+
+          <h1 data-i18n-html="heroTitle">
+            Explore um mundo de <span>monstros</span>
+          </h1>
+
+          <p data-i18n="heroDescription">
+            Descubra criaturas, habilidades, níveis, estatísticas e evoluções.
           </p>
+
           <div class="hero-actions">
-            <a href="#catalogo" class="btn btn-primary">EXPLORAR CATÁLOGO</a>
-            <a href="#cadastro" class="btn btn-secondary">ADICIONAR CRIATURA</a>
+            <button class="button button-primary" data-screen="catalogScreen" data-i18n="exploreCatalog">
+              Explorar catálogo
+            </button>
+            <button class="button button-secondary" data-screen="addScreen" data-i18n="createMonster">
+              Criar monstro
+            </button>
           </div>
-          <div class="hero-numbers">
-            <div><strong>02</strong><span>UNIVERSOS</span></div>
-            <div><strong>∞</strong><span>DESCOBERTAS</span></div>
-            <div><strong>100%</strong><span>EXPLORÁVEL</span></div>
+
+          <div class="hero-features">
+            <span>◆ Pokémon</span>
+            <span>◆ Digimon</span>
+            <span>◆ Criaturas originais</span>
           </div>
         </div>
-        <div class="hero-art">
-          <div class="hero-ring ring-one"></div>
-          <div class="hero-ring ring-two"></div>
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
-            alt="Charizard, um Pokémon do tipo fogo e voador"
-          >
-          <span class="art-label">#006 / CHARIZARD</span>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="hero-orb">M</div>
+          <span class="floating-symbol symbol-one">✦</span>
+          <span class="floating-symbol symbol-two">✧</span>
+          <span class="floating-symbol symbol-three">◆</span>
         </div>
       </div>
 
-      <section class="content-section">
+      <section class="presentation-section">
         <div class="section-heading">
-          <span class="eyebrow">ESCOLHA SEU UNIVERSO</span>
-          <h2>QUAL LADO VOCÊ VAI <span class="blue-text">EXPLORAR?</span></h2>
+          <span class="eyebrow" data-i18n="aboutEyebrow">SOBRE O PROJETO</span>
+          <h2 data-i18n="aboutTitle">Mais do que um catálogo</h2>
+          <p data-i18n="aboutDescription">
+            Um espaço para descobrir, aprender e criar.
+          </p>
         </div>
 
-        <div class="universe-grid">
-          <article class="universe-card pokemon-card">
-            <span class="universe-index">UNIVERSO 01</span>
-            <div class="universe-art">
-              <img
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-                alt="Pikachu"
-                loading="lazy"
-              >
-            </div>
-            <h3>POKÉMON</h3>
-            <p>Descubra espécies, tipos, habilidades, estatísticas e linhas evolutivas.</p>
-            <button class="btn btn-primary universe-button" data-universe="pokemon">
-              EXPLORAR POKÉMON
-            </button>
+        <div class="purpose-grid">
+          <article class="purpose-card">
+            <div class="purpose-icon red-icon">◎</div>
+            <span class="eyebrow" data-i18n="missionLabel">NOSSA MISSÃO</span>
+            <h3 data-i18n="missionTitle">Descobrir</h3>
+            <p data-i18n="missionText">
+              Reunir informações sobre monstros em um só lugar.
+            </p>
           </article>
 
-          <article class="universe-card digimon-card">
-            <span class="universe-index">UNIVERSO 02</span>
-            <div class="universe-art">
-              <img
-                src="https://digimon-api.com/images/digimon/w/Agumon.png"
-                alt="Agumon"
-                loading="lazy"
-              >
-            </div>
-            <h3>DIGIMON</h3>
-            <p>Conheça níveis, atributos, habilidades e caminhos de evolução digital.</p>
-            <button class="btn btn-blue universe-button" data-universe="digimon">
-              EXPLORAR DIGIMON
-            </button>
+          <article class="purpose-card">
+            <div class="purpose-icon blue-icon">◇</div>
+            <span class="eyebrow" data-i18n="visionLabel">NOSSA VISÃO</span>
+            <h3 data-i18n="visionTitle">Conectar</h3>
+            <p data-i18n="visionText">
+              Facilitar a descoberta de criaturas e seus universos.
+            </p>
+          </article>
+
+          <article class="purpose-card">
+            <div class="purpose-icon purple-icon">✧</div>
+            <span class="eyebrow" data-i18n="valuesLabel">NOSSOS VALORES</span>
+            <h3 data-i18n="valuesTitle">Criatividade</h3>
+            <p data-i18n="valuesText">
+              Valorizar a curiosidade, a organização e a imaginação.
+            </p>
           </article>
         </div>
       </section>
 
-      <section class="content-section about-section">
-        <div class="section-heading">
-          <span class="eyebrow">SOBRE O PROJETO</span>
-          <h2>CONHEÇA A <span class="red-text">MONSTERDEX</span></h2>
-          <p>Uma enciclopédia digital criada para explorar dois universos de criaturas.</p>
+      <section class="discovery-banner">
+        <div>
+          <span class="eyebrow" data-i18n="readyLabel">VAMOS COMEÇAR?</span>
+          <h2 data-i18n="readyTitle">Sua próxima descoberta está aqui.</h2>
+          <p data-i18n="readyText">Explore o catálogo e encontre sua próxima criatura favorita.</p>
         </div>
-
-        <div class="values-grid">
-          <article class="value-card">
-            <span class="value-number">01</span>
-            <h3>NOSSA MISSÃO</h3>
-            <p>Organizar informações de Pokémon e Digimon em um ambiente interativo, acessível e fácil de explorar.</p>
-          </article>
-          <article class="value-card">
-            <span class="value-number">02</span>
-            <h3>NOSSA VISÃO</h3>
-            <p>Ser um catálogo educativo e divertido para fãs que desejam conhecer melhor suas criaturas favoritas.</p>
-          </article>
-          <article class="value-card">
-            <span class="value-number">03</span>
-            <h3>NOSSOS VALORES</h3>
-            <p>Curiosidade, criatividade, organização, acessibilidade e respeito às comunidades de fãs.</p>
-          </article>
-        </div>
+        <button class="button button-primary" data-screen="catalogScreen" data-i18n="exploreCatalog">
+          Explorar catálogo
+        </button>
       </section>
     </section>
 
-    <!-- CATÁLOGO -->
-    <section id="catalogo" class="page">
-      <div class="page-banner">
-        <span class="eyebrow">ENCICLOPÉDIA INTERATIVA</span>
-        <h1>CATÁLOGO DE <span class="red-text">CRIATURAS</span></h1>
-        <p>Selecione uma criatura para abrir seu perfil detalhado.</p>
+    <!-- TELA DO CATÁLOGO -->
+    <section id="catalogScreen" class="app-screen">
+      <div class="page-heading">
+        <span class="eyebrow" data-i18n="catalogEyebrow">BANCO DE CRIATURAS</span>
+        <h1 data-i18n="catalogTitle">Catálogo de monstros</h1>
+        <p data-i18n="catalogDescription">
+          Pesquise criaturas e abra seus perfis para conhecer os detalhes.
+        </p>
       </div>
 
-      <div class="catalog-controls">
-        <div class="universe-switch" aria-label="Selecionar universo">
-          <button class="switch-button active" data-universe="pokemon">Pokémon</button>
-          <button class="switch-button" data-universe="digimon">Digimon</button>
+      <div class="catalog-toolbar">
+        <div class="universe-tabs" role="group" aria-label="Universo">
+          <button class="universe-button active" data-universe="pokemon" aria-pressed="true">
+            <span class="universe-dot pokemon-dot"></span>
+            Pokémon
+          </button>
+          <button class="universe-button" data-universe="digimon" aria-pressed="false">
+            <span class="universe-dot digimon-dot"></span>
+            Digimon
+          </button>
+          <button class="universe-button" data-universe="custom" aria-pressed="false" data-i18n="custom">
+            Personalizados
+          </button>
         </div>
 
         <label class="search-box">
           <span aria-hidden="true">⌕</span>
-          <input id="searchInput" type="search" placeholder="Buscar por nome..." autocomplete="off">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Pesquisar por nome..."
+            data-i18n-placeholder="searchPlaceholder"
+            autocomplete="off"
+          >
+          <kbd>/</kbd>
         </label>
       </div>
 
-      <div class="catalog-meta">
-        <p id="catalogStatus" role="status">Preparando catálogo...</p>
-        <span id="catalogCount"></span>
+      <div id="catalogStatus" class="catalog-status" role="status" aria-live="polite"></div>
+
+      <div id="monsterGrid" class="monster-grid">
+        <p class="loading-message">Carregando monstros...</p>
       </div>
 
-      <div id="monsterGrid" class="monster-grid" aria-live="polite"></div>
-
-      <div class="catalog-footer">
-        <button id="loadMoreBtn" class="btn btn-secondary">CARREGAR MAIS</button>
+      <div class="load-more-wrap">
+        <button id="loadMoreButton" class="button button-secondary" hidden data-i18n="loadMore">
+          Carregar mais
+        </button>
       </div>
+
+      <p class="data-note" data-i18n="dataNote">
+        As informações são fornecidas por APIs públicas. A disponibilidade varia conforme a criatura.
+      </p>
     </section>
 
-    <!-- CADASTRO -->
-    <section id="cadastro" class="page">
-      <div class="page-banner">
-        <span class="eyebrow">EXPANDA O BANCO DE DADOS</span>
-        <h1>CADASTRE UMA <span class="blue-text">CRIATURA</span></h1>
-        <p>Adicione um monstro personalizado ao catálogo desta sessão.</p>
+    <!-- TELA DE CRIAÇÃO -->
+    <section id="addScreen" class="app-screen">
+      <div class="page-heading">
+        <span class="eyebrow" data-i18n="createEyebrow">LABORATÓRIO DE CRIATURAS</span>
+        <h1 data-i18n="addPageTitle">Crie seu próprio monstro</h1>
+        <p data-i18n="addPageDescription">
+          Invente uma criatura e adicione-a ao seu catálogo pessoal.
+        </p>
       </div>
 
-      <form id="monsterForm" class="form-card" novalidate>
-        <div class="form-heading">
-          <span class="form-icon">+</span>
+      <form id="addMonsterForm" class="monster-form">
+        <div class="form-section-title">
+          <span class="form-step">01</span>
           <div>
-            <h2>NOVA CRIATURA</h2>
-            <p>Preencha os dados abaixo.</p>
+            <h2 data-i18n="basicInfo">Informações básicas</h2>
+            <p data-i18n="basicInfoDescription">Dê um nome e uma identidade à criatura.</p>
           </div>
         </div>
 
         <div class="form-grid">
-          <div class="form-field">
-            <label for="monsterName">Nome *</label>
-            <input id="monsterName" name="name" maxlength="60" required placeholder="Ex.: Dragão Sombrio">
-            <small class="field-error" id="nameError"></small>
-          </div>
+          <label class="field field-full">
+            <span data-i18n="nameLabel">Nome *</span>
+            <input name="monsterName" type="text" maxlength="70" required placeholder="Nome do monstro">
+          </label>
 
-          <div class="form-field">
-            <label for="monsterUniverse">Universo *</label>
-            <select id="monsterUniverse" name="universe" required>
-              <option value="pokemon">Pokémon</option>
-              <option value="digimon">Digimon</option>
+          <label class="field">
+            <span data-i18n="typeLabel">Tipos</span>
+            <input name="monsterType" type="text" placeholder="Fogo, Água, Energia">
+            <small data-i18n="typeHint">Separe vários tipos com vírgulas.</small>
+          </label>
+
+          <label class="field">
+            <span data-i18n="levelLabel">Nível / estágio</span>
+            <select name="monsterLevel">
+              <option value="">Não definido</option>
+              <option value="Bebê">Bebê</option>
+              <option value="Em Treinamento">Em Treinamento</option>
+              <option value="Criança">Criança</option>
+              <option value="Adulto">Adulto</option>
+              <option value="Perfeito">Perfeito</option>
+              <option value="Definitivo">Definitivo</option>
+              <option value="Mega">Mega</option>
+              <option value="Outro">Outro</option>
             </select>
-          </div>
+          </label>
 
-          <div class="form-field">
-            <label for="monsterType">Tipo ou atributo</label>
-            <input id="monsterType" name="type" maxlength="60" placeholder="Ex.: Fogo, Dragão">
-          </div>
+          <label class="field field-full">
+            <span data-i18n="descriptionLabel">Descrição</span>
+            <textarea name="monsterDescription" rows="4" maxlength="1200" placeholder="Conte a história e as características do monstro."></textarea>
+          </label>
 
-          <div class="form-field">
-            <label for="monsterImage">URL da imagem</label>
-            <input id="monsterImage" name="image" type="url" placeholder="https://exemplo.com/imagem.png">
-            <small class="field-error" id="imageError"></small>
-          </div>
+          <label class="field field-full">
+            <span data-i18n="imageLabel">URL da imagem</span>
+            <input name="monsterImage" type="url" placeholder="https://exemplo.com/imagem.png">
+            <small data-i18n="imageHint">Use um endereço de imagem pública HTTPS.</small>
+          </label>
+        </div>
 
-          <div class="form-field full-width">
-            <label for="monsterDescription">Descrição *</label>
-            <textarea id="monsterDescription" name="description" rows="4" maxlength="500" required placeholder="Descreva a criatura..."></textarea>
-            <small class="field-error" id="descriptionError"></small>
+        <div class="form-section-title">
+          <span class="form-step">02</span>
+          <div>
+            <h2 data-i18n="statsTitle">Estatísticas</h2>
+            <p data-i18n="statsDescription">Defina os atributos da sua criatura.</p>
           </div>
         </div>
 
-        <p class="form-note">* Campos obrigatórios. Os dados cadastrados manualmente não são enviados para as APIs oficiais.</p>
-        <p id="formMessage" class="form-message" role="status"></p>
+        <div class="form-grid stats-form-grid">
+          <label class="field">
+            <span>HP</span>
+            <input name="monsterHP" type="number" min="0" max="9999" placeholder="100">
+          </label>
+
+          <label class="field">
+            <span data-i18n="attackLabel">Ataque</span>
+            <input name="monsterAttack" type="number" min="0" max="9999" placeholder="50">
+          </label>
+
+          <label class="field">
+            <span data-i18n="defenseLabel">Defesa</span>
+            <input name="monsterDefense" type="number" min="0" max="9999" placeholder="50">
+          </label>
+
+          <label class="field">
+            <span data-i18n="speedLabel">Velocidade</span>
+            <input name="monsterSpeed" type="number" min="0" max="9999" placeholder="50">
+          </label>
+
+          <label class="field">
+            <span data-i18n="heightLabel">Altura (m)</span>
+            <input name="monsterHeight" type="number" min="0" max="999" step="0.01" placeholder="1.20">
+          </label>
+
+          <label class="field">
+            <span data-i18n="weightLabel">Peso (kg)</span>
+            <input name="monsterWeight" type="number" min="0" max="99999" step="0.01" placeholder="25">
+          </label>
+        </div>
+
+        <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
 
         <div class="form-actions">
-          <button type="reset" class="btn btn-secondary">LIMPAR</button>
-          <button type="submit" class="btn btn-primary">CADASTRAR CRIATURA</button>
+          <button type="submit" class="button button-primary" data-i18n="saveMonster">
+            Salvar monstro
+          </button>
+          <button type="button" id="clearFormButton" class="button button-secondary" data-i18n="cancelButton">
+            Limpar formulário
+          </button>
         </div>
       </form>
     </section>
   </main>
 
   <footer class="site-footer">
-    <a class="logo footer-logo" href="#inicio">
-      <span class="logo-symbol">M</span>
-      <span>MONSTER<span class="blue-text">DEX</span></span>
+    <a class="brand footer-brand" href="#presentationScreen" data-screen-link="presentationScreen">
+      <span class="brand-icon">M</span>
+      <span>Monster<span class="brand-accent">Dex</span></span>
     </a>
-    <p>Projeto acadêmico de catálogo interativo.</p>
-    <p class="footer-note">Pokémon e Digimon são marcas de seus respectivos proprietários. Projeto de fã, sem afiliação oficial.</p>
+    <p data-i18n="footerText">Feito para explorar mundos e descobrir criaturas.</p>
   </footer>
 
-  <!-- PERFIL COMPLETO -->
-  <section id="monsterProfile" class="profile-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="profileName">
-    <div class="profile-panel">
-      <button id="closeProfile" class="profile-close" type="button" aria-label="Fechar perfil">✕</button>
-
-      <div id="profileLoading" class="profile-loading">
-        <span class="loading-spinner"></span>
-        <p>CARREGANDO PERFIL DA CRIATURA...</p>
-      </div>
-
-      <div id="profileContent" hidden>
-        <div class="profile-hero">
-          <div class="profile-art">
-            <img id="profileImage" src="" alt="">
-          </div>
-          <div class="profile-heading">
-            <span id="profileId" class="eyebrow"></span>
-            <h2 id="profileName"></h2>
-            <div id="profileTypes" class="monster-tags"></div>
-            <p id="profileDescription"></p>
-          </div>
-        </div>
-
-        <div class="profile-facts">
-          <div class="fact-card">
-            <span>ALTURA</span>
-            <strong id="profileHeight">—</strong>
-          </div>
-          <div class="fact-card">
-            <span>PESO</span>
-            <strong id="profileWeight">—</strong>
-          </div>
-          <div class="fact-card">
-            <span>HABILIDADES / NÍVEL</span>
-            <strong id="profileAbilities">—</strong>
-          </div>
-        </div>
-
-        <section class="profile-section">
-          <h3>ESTATÍSTICAS</h3>
-          <div id="profileStats" class="stats-list"></div>
-        </section>
-
-        <section class="profile-section">
-          <h3>ATAQUES E GOLPES</h3>
-          <p id="movesNote" class="profile-note"></p>
-          <div id="profileMoves" class="moves-list"></div>
-        </section>
-
-        <section class="profile-section">
-          <h3>LINHA EVOLUTIVA</h3>
-          <div id="profileEvolution" class="evolution-list"></div>
-        </section>
-
-        <p id="profileError" class="form-message error" role="status"></p>
-      </div>
+  <!-- PERFIL DO MONSTRO -->
+  <dialog id="profileDialog" class="profile-dialog" aria-label="Perfil do monstro">
+    <div class="profile-content">
+      <button class="profile-close" type="button" data-close-profile aria-label="Fechar">×</button>
+      <p>Selecione um monstro no catálogo para ver os detalhes.</p>
     </div>
-  </section>
+  </dialog>
 </body>
 </html>
